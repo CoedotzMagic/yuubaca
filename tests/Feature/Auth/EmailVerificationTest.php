@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\Pustakawan;
+use App\Models\Users;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,7 +16,7 @@ class EmailVerificationTest extends TestCase
 
     public function test_email_verification_screen_can_be_rendered()
     {
-        $user = Pustakawan::factory()->create([
+        $user = Users::factory()->create([
             'email_verified_at' => null,
         ]);
 
@@ -27,7 +27,7 @@ class EmailVerificationTest extends TestCase
 
     public function test_email_can_be_verified()
     {
-        $user = Pustakawan::factory()->create([
+        $user = Users::factory()->create([
             'email_verified_at' => null,
         ]);
 
@@ -48,7 +48,7 @@ class EmailVerificationTest extends TestCase
 
     public function test_email_is_not_verified_with_invalid_hash()
     {
-        $user = Pustakawan::factory()->create([
+        $user = Users::factory()->create([
             'email_verified_at' => null,
         ]);
 

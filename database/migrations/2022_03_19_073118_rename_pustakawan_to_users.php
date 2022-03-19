@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::rename("users", "pustakawan");
+        Schema::rename("pustakawan", "users");
     }
 
     /**
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("pustakawan");
+        Schema::dropIfExists("users");
     }
 };
