@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/buku', function () {
+       return view('buku');
+    })->name('buku');
+
+    Route::put('/tambah-buku', [BukuController::class, 'store'])->name('tambah.buku');
+
+});
 
 require __DIR__.'/auth.php';
