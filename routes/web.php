@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
     })->name('dashboard');
 
     Route::get('/buku', function () {
-       return view('buku');
+       return view('buku/buku');
     })->name('buku');
 
     Route::put('/tambah-buku', [BukuController::class, 'store'])->name('tambah.buku');
