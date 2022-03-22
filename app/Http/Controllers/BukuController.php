@@ -8,6 +8,23 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BukuController extends Controller
 {
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('buku.tambahbuku');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request) {
 
         $request->validate([
@@ -15,29 +32,22 @@ class BukuController extends Controller
             'judul'=>'required',
             'kategori'=>'required',
             'tingkatan'=>'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'file'=>'required',
-        ],[
-            'isbn.required' => 'ISBN harus diisi',
-            'judul.required' => 'Judul harus diisi',
-            'kategori.required' => 'kategori harus diisi',
-            'tingkatan.required' => 'tingkatan harus diisi',
-            'file.required' => 'file harus diisi',
         ]);
 
-        try {
-            DB::table('buku')->insert([
-                'isbn' => "$request->isbn",
-                'judul' => "$request->judul",
-                'kategori' => "$request->kategori",
-                'tingkatan' => "$request->tingkatan",
-                'gambar' => "$request->gambar",
-                'file' => "$request->file"
-            ]);
-            toast('Data berhasil Ditambahkan!', 'success');
-            return back();
-        } catch (\Exception $e) {
-            Alert::error('Error', $e->getMessage());
-            return back();
+        $input = $request->all();
+
+        if ($image = $request->file('gambar')) {
+            $destinationPath = 'img/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['gambar'] = "$profileImage";
         }
+
+        BukuController::create($input);
+
+        return redirect()->route('dashboard')
+            ->with('success', 'Data Buku berhasil dibuat!.');
     }
 }
