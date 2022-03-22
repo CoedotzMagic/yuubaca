@@ -19,6 +19,14 @@
                         {{ __('Buku') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Petunjuk Penggunaan -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('petunjuk-penggunaan')" :active="request()->routeIs('petunjuk-penggunaan')">
+                        {{ __('Petunjuk Penggunaan') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -71,6 +79,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('buku')" :active="request()->routeIs('buku')">
                 {{ __('Buku') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('petunjuk-penggunaan')" :active="request()->routeIs('petunjuk-penggunaan')">
+                {{ __('Petunjuk Penggunaan') }}
             </x-responsive-nav-link>
         </div>
 
