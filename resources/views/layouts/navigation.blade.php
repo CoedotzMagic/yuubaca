@@ -15,13 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('buku')" :active="request()->routeIs('buku')">
+                    <!-- <x-nav-link :href="route('tambahbuku')" :active="request()->routeIs('tambahbuku')">
                         {{ __('Buku') }}
-                    </x-nav-link>
-                </div>
-
-                <!-- Petunjuk Penggunaan -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    </x-nav-link> -->
+                    <!-- Petunjuk Penggunaan -->
                     <x-nav-link :href="route('petunjuk-penggunaan')" :active="request()->routeIs('petunjuk-penggunaan')">
                         {{ __('Petunjuk Penggunaan') }}
                     </x-nav-link>
@@ -77,9 +74,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('buku')" :active="request()->routeIs('buku')">
+            <!-- <x-responsive-nav-link :href="route('tambahbuku')" :active="request()->routeIs('tambahbuku')">
                 {{ __('Buku') }}
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> -->
             <x-responsive-nav-link :href="route('petunjuk-penggunaan')" :active="request()->routeIs('petunjuk-penggunaan')">
                 {{ __('Petunjuk Penggunaan') }}
             </x-responsive-nav-link>

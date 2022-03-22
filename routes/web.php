@@ -29,9 +29,9 @@ Route::group(['middleware' => 'auth'], function() {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/buku', function () {
-       return view('buku/buku');
-    })->name('buku');
+    Route::get('/tambahbuku', function () {
+       return view('buku/tambahbuku');
+    })->name('tambahbuku');
 
     Route::put('/tambah-buku', [BukuController::class, 'store'])->name('tambah.buku');
 
