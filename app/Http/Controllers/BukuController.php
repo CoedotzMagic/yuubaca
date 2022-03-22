@@ -50,4 +50,50 @@ class BukuController extends Controller
         return redirect()->route('dashboard')
             ->with('success', 'Data Buku berhasil dibuat!.');
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(BukuController $bukucontroller)
+    {
+        return view('bukucontroller.edit', compact('bukucontroller'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, BukuController $bukucontroller)
+    {
+        $request->validate([
+            'isbn'=>'required',
+            'judul'=>'required',
+            'kategori'=>'required',
+            'tingkatan'=>'required',
+            'file'=>'required',
+        ]);
+
+        $input = $request->all();
+
+        if ($image = $request->file('gambar')) {
+            $destinationPath = 'img/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['gambar'] = "$profileImage";
+        } else {
+            unset($input['gambar']);
+        }
+
+        $bukucontroller->update($input);
+
+        return redirect()->route('dashboard')
+            ->with('success', 'Data Buku berhasil diperbarui!');
+    }
+
 }
