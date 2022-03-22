@@ -33,7 +33,7 @@ class BukuController extends Controller
                 'gambar' => "$request->gambar",
                 'file' => "$request->file"
             ]);
-            toast('Data berhasil dimasukkan!', 'success');
+            toast('Data berhasil Ditambahkan!', 'success');
             return back();
         } catch (\Exception $e) {
             Alert::error('Error', $e->getMessage());

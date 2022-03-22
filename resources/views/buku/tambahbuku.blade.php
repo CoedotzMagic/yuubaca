@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Buku') }}
+            {{ __('Tambah Data Buku') }}
         </h2>
     </x-slot>
 
@@ -16,11 +16,11 @@
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="isbn">ISBN</label>
-                                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="{{ old('isbn') }}">
+                                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="{{ old('isbn') }}" required>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="judul">Judul</label>
-                                <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" value="{{ old('judul') }}">
+                                <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" value="{{ old('judul') }}" required>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="Kategori">Kategori</label>
@@ -34,20 +34,20 @@
                             <div class="col-md-6 mb-3">
                                 <label for="tingkatan">Tingkatan</label>
                                 <select class="custom-select" id="tingkatan" name="tingkatan">
-                                    <option value="SD">SD</option>
-                                    <option value="SMP">SMP</option>
-                                    <option value="SMA">SMA</option>
+                                    <option value="SD">SD/MA</option>
+                                    <option value="SMP">SMP/MTS</option>
+                                    <option value="SMA">SMA/SMK</option>
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="gambar">Gambar</label>
-                                <input type="file" accept="image/*" class="form-control" id="gambar" name="gambar" value="">
+                                <input type="file" accept="image/*" class="form-control" id="gambar" name="gambar" value="" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="file">File</label>
-                                <input type="file" accept="application/pdf" class="form-control" id="file" name="file" value="">
+                                <input type="file" accept="application/pdf" class="form-control" id="file" name="file" value="" required>
                             </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Tambah Data</button>
