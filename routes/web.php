@@ -18,7 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* Routes Admin */
 
+Route::get('/petunjuk-penggunaan', function () {
+    return view('petunjuk-penggunaan');
+})->middleware(['auth'])->name('petunjuk-penggunaan');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', function () {
