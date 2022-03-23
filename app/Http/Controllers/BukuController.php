@@ -96,4 +96,15 @@ class BukuController extends Controller
             ->with('success', 'Data Buku berhasil diperbarui!');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(BukuController $buku)
+    {
+        //N0tH1nG
+    }
+
 }
