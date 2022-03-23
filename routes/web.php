@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuController;
+use App\Models\Buku;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,17 +25,16 @@ Route::get('/petunjuk-penggunaan', function () {
     return view('petunjuk-penggunaan');
 })->middleware(['auth'])->name('petunjuk-penggunaan');
 
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-    Route::get('/tambahbuku', function () {
-       return view('buku/tambahbuku');
-    })->name('tambahbuku');
+/* Route Restful, View Data Buku */
 
-    Route::put('/tambah-buku', [BukuController::class, 'store'])->name('tambah.buku');
+Route::resource('buku', BukuController::class);
 
-});
+Route::get('dataBuku', function () {
+    return view('buku.index');
+})->middleware(['auth'])->name('dataBuku');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
