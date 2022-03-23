@@ -50,7 +50,9 @@
                                 <input type="file" accept="application/pdf" class="form-control" id="file" name="file" value="" required>
                             </div>
                         </div>
+                        <br>
                         <button class="btn btn-primary" type="submit">Tambah Data</button>
+                        <a class="btn btn-secondary" href="{{ route('dashboard') }}"> Kembali</a>
                     </form>
                 </div>
             </div>
