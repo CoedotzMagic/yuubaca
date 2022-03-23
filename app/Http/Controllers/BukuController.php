@@ -57,9 +57,9 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(BukuController $bukucontroller)
+    public function edit(BukuController $buku)
     {
-        return view('bukucontroller.edit', compact('bukucontroller'));
+        return view('buku.edit', compact('buku'));
     }
 
     /**
@@ -69,7 +69,7 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BukuController $bukucontroller)
+    public function update(Request $request, BukuController $buku)
     {
         $request->validate([
             'isbn'=>'required',
@@ -90,7 +90,7 @@ class BukuController extends Controller
             unset($input['gambar']);
         }
 
-        $bukucontroller->update($input);
+        $buku->update($input);
 
         return redirect()->route('dashboard')
             ->with('success', 'Data Buku berhasil diperbarui!');
