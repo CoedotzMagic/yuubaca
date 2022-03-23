@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <!-- <x-nav-link :href="route('tambahbuku')" :active="request()->routeIs('tambahbuku')">
+                    <!-- <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
                         {{ __('Buku') }}
                     </x-nav-link> -->
                     <!-- Petunjuk Penggunaan -->
@@ -74,7 +74,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <!-- <x-responsive-nav-link :href="route('tambahbuku')" :active="request()->routeIs('tambahbuku')">
+            <!-- <x-responsive-nav-link :href="route('create')" :active="request()->routeIs('create')">
                 {{ __('Buku') }}
             </x-responsive-nav-link> -->
             <x-responsive-nav-link :href="route('petunjuk-penggunaan')" :active="request()->routeIs('petunjuk-penggunaan')">

@@ -16,7 +16,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        return view('buku.tambahbuku');
+        return view('buku.create');
     }
 
     /**
