@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Buku extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+
+    protected $table = 'buku';
+    public $timestamps = true;
+
     protected $fillable = [
         'isbn',
         'judul',
