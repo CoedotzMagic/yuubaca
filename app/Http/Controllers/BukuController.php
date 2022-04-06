@@ -2,12 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BukuController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+
+        /**
+         * Melakukan Pengecekan Session pada Jenis Kucing
+         */
+
+        $data = $request->session()->has('auth');
+        if ($data) {
+            return view('auth.login');
+        }
+
+        // $buku = Buku::latest()->paginate(5);
+
+        // return view('buku.index', compact('buku'))
+        //     ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        $pagination  = 5;
+        $buku    = Buku::when($request->keyword, function ($query) use ($request) {
+            $query->where('judul', 'like', "%{$request->keyword}%");
+        })->orderBy('created_at', 'desc')->paginate($pagination);
+
+        $buku->appends($request->only('keyword'));
+
+        return view('buku.index', compact('buku'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -33,7 +67,7 @@ class BukuController extends Controller
             'kategori'=>'required',
             'tingkatan'=>'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file'=>'required',
+            'file'=>'required|mimes:pdf,xlx,csv|max:2048',
         ]);
 
         $input = $request->all();
@@ -43,11 +77,16 @@ class BukuController extends Controller
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['gambar'] = "$profileImage";
+        } else if ($file = $request->file('file')) {
+            $destinationPath = 'data/';
+            $profileData = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $profileData);
+            $input['file'] = "$profileData";
         }
 
         BukuController::create($input);
 
-        return redirect()->route('dashboard')
+        return redirect()->route('buku.index')
             ->with('success', 'Data Buku berhasil dibuat!.');
     }
 
@@ -92,7 +131,7 @@ class BukuController extends Controller
 
         $buku->update($input);
 
-        return redirect()->route('dashboard')
+        return redirect()->route('buku.index')
             ->with('success', 'Data Buku berhasil diperbarui!');
     }
 
@@ -104,7 +143,10 @@ class BukuController extends Controller
      */
     public function destroy(BukuController $buku)
     {
-        //N0tH1nG
+        $buku->delete();
+
+        return redirect()->route('buku.index')
+            ->with('success', 'Data buku berhasil dihapus!');
     }
 
 }
