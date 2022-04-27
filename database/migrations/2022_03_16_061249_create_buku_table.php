@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('judul');
             $table->string('kategori');
             $table->string('tingkatan');
-            $table->string('gambar');
-            $table->string('file');
+            $table->text('gambar');
+            $table->text('file');
             $table->timestamps();
         });
     }
