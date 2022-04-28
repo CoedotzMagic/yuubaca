@@ -92,6 +92,17 @@ class BukuController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Buku $buku)
+    {
+        return view('buku.show',compact('buku'));
+    } 
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Product  $product
