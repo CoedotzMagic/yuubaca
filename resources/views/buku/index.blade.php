@@ -42,10 +42,11 @@
 
 <table class="table table-bordered table-responsive-lg">
     <tr>
-        <th>No</th>
-        <th>Gambar</th>
+        <th>ISBN</th>
+        <th>Cover Buku</th>
         <th>Judul</th>
-        <th>Deskripsi</th>
+        <th>Kategori</th>
+        <th>Tingkatan</th>
         <th width="280px">Aksi</th>
     </tr>
     @php
@@ -53,15 +54,16 @@
     @endphp
     @foreach ($buku as $dataBuku)
     <tr>
-        <td>{{ ++$i }}</td>
+        <td>{{ $dataBuku->isbn }}</td>
         <td><img src="/img/{{ $dataBuku->gambar }}" width="100px"></td>
         <td>{{ $dataBuku->judul }}</td>
-        <td>{{ $dataBuku->deskripsi }}</td>
+        <td>{{ $dataBuku->kategori }}</td>
+        <td>{{ $dataBuku->tingkatan }}</td>
         <td>
             <form action="" method="POST">
 
-                <!-- <a class="btn btn-info" href="{{ route('buku.show',$dataBuku->isbn) }}" title="Show" style="border: none; background-color:transparent;"> <i class="fas fa-eye  fa-lg" style="color:black"></i>
-                </a> -->
+                <a class="btn btn-info" href="{{ route('buku.show',$dataBuku->isbn) }}" title="Show" style="border: none; background-color:transparent;"> <i class="fas fa-eye  fa-lg" style="color:black"></i>
+                </a>
 
                 <a class="btn btn-primary" href="{{ route('buku.edit',$dataBuku->isbn) }}" title="Edit" style="border: none; background-color:transparent;"> <i class="fas fa-edit  fa-lg" style="color:black"></i>
                 </a>
