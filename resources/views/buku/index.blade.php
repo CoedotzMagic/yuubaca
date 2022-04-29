@@ -60,10 +60,10 @@
         <td>
             <form action="" method="POST">
 
-                <!-- <a class="btn btn-info" href="{{ route('buku.show',$dataBuku->id) }}" title="Show" style="border: none; background-color:transparent;"> <i class="fas fa-eye  fa-lg" style="color:black"></i>
+                <!-- <a class="btn btn-info" href="{{ route('buku.show',$dataBuku->isbn) }}" title="Show" style="border: none; background-color:transparent;"> <i class="fas fa-eye  fa-lg" style="color:black"></i>
                 </a> -->
 
-                <a class="btn btn-primary" href="{{ route('buku.edit',$dataBuku->id) }}" title="Edit" style="border: none; background-color:transparent;"> <i class="fas fa-edit  fa-lg" style="color:black"></i>
+                <a class="btn btn-primary" href="{{ route('buku.edit',$dataBuku->isbn) }}" title="Edit" style="border: none; background-color:transparent;"> <i class="fas fa-edit  fa-lg" style="color:black"></i>
                 </a>
 
                 @csrf
