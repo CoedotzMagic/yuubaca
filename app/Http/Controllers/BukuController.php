@@ -57,7 +57,7 @@ class BukuController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request) {
 
@@ -84,10 +84,25 @@ class BukuController extends Controller
             $input['file'] = "$profileData";
         }
 
-        BukuController::create($input);
+        try {
+            DB::table('buku')->insert([
+                'isbn' => "$request->isbn",
+                'judul' => "$request->judul",
+                'kategori' => "$request->kategori",
+                'tingkatan' => "$request->tingkatan",
+                'gambar' => "$request->gambar",
+                'file' => "$request->file",
+            ]);
+            toast('Data berhasil dimasukkan!', 'success');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Error', $e->getMessage());
+            return back();
+        }
+//        return redirect()->route('buku.index')
+//            ->with('success', 'Data Buku berhasil dibuat!.');
 
-        return redirect()->route('buku.index')
-            ->with('success', 'Data Buku berhasil dibuat!.');
+//        return view('buku.index', ['buku'=> $input]);
     }
 
     /**
