@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class BukuController extends Controller
 {
@@ -84,7 +82,7 @@ class BukuController extends Controller
             $input['file'] = "$profileData";
         }
 
-        BukuController::create($input);
+        Buku::create($input);
 
        return redirect()->route('buku.index')
            ->with('success', 'Data Buku berhasil dibuat!.');
@@ -98,7 +96,7 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(BukuController $buku)
+    public function edit(Buku $buku)
     {
         return view('buku.edit', compact('buku'));
     }
@@ -110,7 +108,7 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BukuController $buku)
+    public function update(Request $request, Buku $buku)
     {
         $request->validate([
             'isbn'=>'required',
@@ -143,7 +141,7 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BukuController $buku)
+    public function destroy(Buku $buku)
     {
         $buku->delete();
 
