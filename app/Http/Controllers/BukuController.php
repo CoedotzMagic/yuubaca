@@ -143,7 +143,7 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
-        $buku->delete();
+        // hintnya sama kayak fungsi update, cuma 1 baris ajah kalau udah ketemu apus komen ini
 
         return redirect()->route('buku.index')
             ->with('success', 'Data buku berhasil dihapus!');
