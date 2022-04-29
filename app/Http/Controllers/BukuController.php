@@ -73,12 +73,12 @@ class BukuController extends Controller
         // Gambar
         if ($image = $request->file('gambar')) {
             $destinationPath = 'img/';
-            $profileImage = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['gambar'] = "$profileImage";
         } if ($file = $request->file('file')) { // File
             $destinationPath = 'data/';
-            $profileData = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileData);
             $input['file'] = "$profileData";
         }
@@ -124,7 +124,7 @@ class BukuController extends Controller
 
         if ($image = $request->file('gambar')) {
             $destinationPath = 'img/';
-            $profileImage = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['gambar'] = "$profileImage";
         } else {
@@ -135,7 +135,7 @@ class BukuController extends Controller
 
         if ($file = $request->file('file')) {
             $destinationPath = 'data/';
-            $profileData = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileData);
             $input['file'] = "$profileData";
         }
