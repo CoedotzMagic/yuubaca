@@ -70,14 +70,15 @@ class BukuController extends Controller
 
         $input = $request->all();
 
+        // Gambar
         if ($image = $request->file('gambar')) {
             $destinationPath = 'img/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['gambar'] = "$profileImage";
-        } else if ($file = $request->file('file')) {
+        } if ($file = $request->file('file')) { // File
             $destinationPath = 'data/';
-            $profileData = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $profileData = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileData);
             $input['file'] = "$profileData";
         }
@@ -115,18 +116,28 @@ class BukuController extends Controller
             'judul'=>'required',
             'kategori'=>'required',
             'tingkatan'=>'required',
-            'file'=>'required',
         ]);
 
         $input = $request->all();
 
+        // Gambar
+
         if ($image = $request->file('gambar')) {
             $destinationPath = 'img/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['gambar'] = "$profileImage";
         } else {
             unset($input['gambar']);
+        }
+
+        // File
+
+        if ($file = $request->file('file')) {
+            $destinationPath = 'data/';
+            $profileData = $image->getClientOriginalName . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $profileData);
+            $input['file'] = "$profileData";
         }
 
         $buku->update($input);
