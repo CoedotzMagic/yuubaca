@@ -32,7 +32,8 @@ class BukuController extends Controller
 
         $pagination  = 5;
         $buku    = Buku::when($request->keyword, function ($query) use ($request) {
-            $query->where('judul', 'like', "%{$request->keyword}%");
+            $query->where('judul', 'like', "%{$request->keyword}%")
+            ->orWhere('isbn', 'like', "%{$request->keyword}%");
         })->orderBy('created_at', 'desc')->paginate($pagination);
 
         $buku->appends($request->only('keyword'));
