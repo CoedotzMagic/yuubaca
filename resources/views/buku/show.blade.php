@@ -11,9 +11,11 @@
         </div>
     </div>
 </div>
+@php
+    $buku = \Illuminate\Support\Facades\DB::table('buku')->where('isbn', $isbn)->first();
+@endphp
 
 <div class="row">
-
     <!-- PDF -->
     <object data="/data/{{ $buku->file }}" type="application/pdf" width="100%" height="800px">
         <p>Yah, karena browser ini tidak dilengkapi plugin, jadi alternatifnya anda bisa <a href="/data/{{ $buku->file }}">Klik untuk mengunduh Buku.</a></p>

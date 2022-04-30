@@ -12,6 +12,7 @@ class Buku extends Model
     protected $table = 'buku';
     public $timestamps = true;
 
+
     protected $fillable = [
         'isbn',
         'judul',

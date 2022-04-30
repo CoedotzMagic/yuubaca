@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
 {
@@ -11,7 +12,7 @@ class BukuController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
@@ -45,7 +46,7 @@ class BukuController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -56,7 +57,7 @@ class BukuController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request) {
 
@@ -84,9 +85,9 @@ class BukuController extends Controller
             $input['file'] = "$profileData";
         }
 
-        Buku::create($input);
+        $buku = Buku::create($input); // tambah variabel $buku
 
-       return redirect()->route('buku.index')
+       return redirect()->route('buku.index', compact('buku'))
            ->with('success', 'Data Buku berhasil dibuat!.');
 
     //    return view('buku.index', ['buku'=> $input]);
@@ -96,22 +97,22 @@ class BukuController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Buku $buku)
+    public function show($isbn)
     {
-        return view('buku.show',compact('buku'));
-    } 
+        return view('buku.show',compact('isbn'));
+    }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(Buku $buku)
+    public function edit($isbn)
     {
-        return view('buku.edit', compact('buku'));
+        return view('buku.edit', compact('isbn'));
     }
 
     /**
@@ -119,9 +120,9 @@ class BukuController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Buku $buku)
+    public function update(Request $request, $isbn)
     {
         $request->validate([
             'isbn'=>'required',
@@ -152,7 +153,15 @@ class BukuController extends Controller
             $input['file'] = "$profileData";
         }
 
-        $buku->update($input);
+        $buku = Buku::where('isbn', $isbn);
+        $buku->update([
+            'isbn' => $input['isbn'],
+            'judul' => $input['judul'],
+            'kategori' => $input['kategori'],
+            'tingkatan' => $input['tingkatan'],
+            'gambar' => $input['gambar'],
+            'file' => $input['file'],
+        ]);
 
         return redirect()->route('buku.index')
             ->with('success', 'Data Buku berhasil diperbarui!');
@@ -162,7 +171,7 @@ class BukuController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Buku $buku)
     {
