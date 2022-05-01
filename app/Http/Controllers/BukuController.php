@@ -164,16 +164,10 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buku $buku)
+    public function destroy($isbn)
     {
-        //Buku::destroy($buku->isbn);
-        $book = Buku::where('isbn', $buku);
-        $book->delete();
 
-        // $buku = Buku::find($isbn); 
-        // $buku->delete();
-
-        //return view('buku.edit', compact('isbn'));
+        Buku::where('isbn', '=', $isbn)->delete();
 
         return redirect()->route('buku.index')
             ->with('success', 'Data buku berhasil dihapus!');
