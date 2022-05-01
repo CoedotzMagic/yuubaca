@@ -29,12 +29,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/viewapi', function () {
+    return view('viewapi');
+})->middleware(['auth'])->name('viewapi');
+
 /* Route Restful, View Data Buku */
 
 Route::resource('buku', BukuController::class);
 
-Route::get('dataBuku', function () {
-    return view('buku.index');
-})->middleware(['auth'])->name('dataBuku');
+// Route::get('dataBuku', function () {
+//     return view('buku.index');
+// })->middleware(['auth'])->name('dataBuku');
 
 require __DIR__ . '/auth.php';
