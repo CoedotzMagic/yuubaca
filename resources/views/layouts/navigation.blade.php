@@ -18,6 +18,10 @@
                     <x-nav-link :href="route('buku.index')" :active="request()->routeIs('jenisKucing.index')">
                         {{ __('Buku') }}
                     </x-nav-link>
+                    <!-- Lihat API -->
+                    <x-nav-link :href="route('viewapi')" :active="request()->routeIs('viewapi')">
+                        {{ __('API') }}
+                    </x-nav-link>
                     <!-- Petunjuk Penggunaan -->
                     <x-nav-link :href="route('petunjuk-penggunaan')" :active="request()->routeIs('petunjuk-penggunaan')">
                         {{ __('Petunjuk Penggunaan') }}
@@ -74,8 +78,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('buku.index')" :active="request()->routeIs('jeniskucing.index')">
+            <x-responsive-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
                 {{ __('Buku') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('viewapi')" :active="request()->routeIs('viewapi')">
+                {{ __('API') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('petunjuk-penggunaan')" :active="request()->routeIs('petunjuk-penggunaan')">
                 {{ __('Petunjuk Penggunaan') }}
