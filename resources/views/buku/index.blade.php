@@ -57,23 +57,21 @@
         <td>{{ $dataBuku->kategori }}</td>
         <td>{{ $dataBuku->tingkatan }}</td>
         <td>
-            <form action="" method="POST">
+            <div>
+            <a class="btn btn-info" href="{{ route('buku.show',$dataBuku->isbn) }}" title="Show" style="border: none; background-color:transparent;"> <i class="fas fa-eye  fa-lg" style="color:black"></i>
+            </a>
 
-                <a class="btn btn-info" href="{{ route('buku.show',$dataBuku->isbn) }}" title="Show" style="border: none; background-color:transparent;"> <i class="fas fa-eye  fa-lg" style="color:black"></i>
-                </a>
+            <a class="btn btn-primary" href="{{ route('buku.edit',$dataBuku->isbn) }}" title="Edit" style="border: none; background-color:transparent;"> <i class="fas fa-edit  fa-lg" style="color:black"></i>
+            </a>
 
-                <a class="btn btn-primary" href="{{ route('buku.edit',$dataBuku->isbn) }}" title="Edit" style="border: none; background-color:transparent;"> <i class="fas fa-edit  fa-lg" style="color:black"></i>
-                </a>
-
+            <form action="{{ route('buku.destroy',$dataBuku->isbn) }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
-
                 <button class="btn btn-danger" type="submit" title="delete" style="border: none; background-color:transparent;" onclick="return confirm('Apa anda yakin ingin menghapus data ini?')">
                     <i class="fas fa-trash fa-lg text-danger"></i>
-
                 </button>
-
             </form>
+            </div>
         </td>
     </tr>
     @endforeach

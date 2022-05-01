@@ -173,9 +173,10 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Buku $buku)
+    public function destroy($isbn)
     {
-        // hintnya sama kayak fungsi update, cuma 1 baris ajah kalau udah ketemu apus komen ini
+
+        Buku::where('isbn', '=', $isbn)->delete();
 
         return redirect()->route('buku.index')
             ->with('success', 'Data buku berhasil dihapus!');
