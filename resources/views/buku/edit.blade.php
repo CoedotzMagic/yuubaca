@@ -18,10 +18,6 @@
                 </div>
                 @endif
 
-                @php
-                    $buku = \Illuminate\Support\Facades\DB::table('buku')->where('isbn', $isbn)->first();
-                @endphp
-
                 <form action="{{ route('buku.update',$buku->isbn) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -29,11 +25,11 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
                             <label for="isbn">ISBN</label>
-                            <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="{{ $buku->isbn }}" required>
+                            <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="{{ old('isbn') }}" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="judul">Judul</label>
-                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" value="{{ $buku->judul }}" required>
+                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" value="{{ old('judul') }}" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="Kategori">Kategori</label>

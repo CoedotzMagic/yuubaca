@@ -37,7 +37,6 @@ Route::get('/viewapi', function () {
 
 Route::resource('buku', BukuController::class);
 
-
 // Route::get('dataBuku', function () {
 //     return view('buku.index');
 // })->middleware(['auth'])->name('dataBuku');

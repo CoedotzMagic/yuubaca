@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
 {
@@ -12,7 +11,7 @@ class BukuController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -46,7 +45,7 @@ class BukuController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -57,7 +56,7 @@ class BukuController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
 
@@ -85,9 +84,9 @@ class BukuController extends Controller
             $input['file'] = "$profileData";
         }
 
-        $buku = Buku::create($input); // tambah variabel $buku
+        Buku::create($input);
 
-       return redirect()->route('buku.index', compact('buku'))
+       return redirect()->route('buku.index')
            ->with('success', 'Data Buku berhasil dibuat!.');
 
     //    return view('buku.index', ['buku'=> $input]);
@@ -97,22 +96,22 @@ class BukuController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
-    public function show($isbn)
+    public function show(Buku $buku)
     {
-        return view('buku.show',compact('isbn'));
-    }
+        return view('buku.show',compact('buku'));
+    } 
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\Response
      */
-    public function edit($isbn)
+    public function edit(Buku $buku)
     {
-        return view('buku.edit', compact('isbn'));
+        return view('buku.edit', compact('buku'));
     }
 
     /**
@@ -120,9 +119,9 @@ class BukuController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $isbn)
+    public function update(Request $request, Buku $buku)
     {
         $request->validate([
             'isbn'=>'required',
@@ -153,15 +152,7 @@ class BukuController extends Controller
             $input['file'] = "$profileData";
         }
 
-        $buku = Buku::where('isbn', $isbn);
-        $buku->update([
-            'isbn' => $input['isbn'],
-            'judul' => $input['judul'],
-            'kategori' => $input['kategori'],
-            'tingkatan' => $input['tingkatan'],
-            'gambar' => $input['gambar'],
-            'file' => $input['file'],
-        ]);
+        $buku->update($input);
 
         return redirect()->route('buku.index')
             ->with('success', 'Data Buku berhasil diperbarui!');
@@ -171,11 +162,18 @@ class BukuController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Buku $buku)
     {
-        // hintnya sama kayak fungsi update, cuma 1 baris ajah kalau udah ketemu apus komen ini
+        //Buku::destroy($buku->isbn);
+        $book = Buku::where('isbn', $buku);
+        $book->delete();
+
+        // $buku = Buku::find($isbn); 
+        // $buku->delete();
+
+        //return view('buku.edit', compact('isbn'));
 
         return redirect()->route('buku.index')
             ->with('success', 'Data buku berhasil dihapus!');

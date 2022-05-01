@@ -49,6 +49,9 @@
         <th>Tingkatan</th>
         <th width="280px">Aksi</th>
     </tr>
+    @php
+        $i = 1;
+    @endphp
     @foreach ($buku as $dataBuku)
     <tr>
         <td>{{ $dataBuku->isbn }}</td>
@@ -65,13 +68,14 @@
                 <a class="btn btn-primary" href="{{ route('buku.edit',$dataBuku->isbn) }}" title="Edit" style="border: none; background-color:transparent;"> <i class="fas fa-edit  fa-lg" style="color:black"></i>
                 </a>
 
-                @csrf
-                @method('DELETE')
-
-                <button class="btn btn-danger" type="submit" title="delete" style="border: none; background-color:transparent;" onclick="return confirm('Apa anda yakin ingin menghapus data ini?')">
-                    <i class="fas fa-trash fa-lg text-danger"></i>
-
-                </button>
+                <form action="{{ route('buku.show',$dataBuku->isbn) }}" method="POST">
+                    {{-- @method('delete') --}}
+                    @csrf
+                
+                    <button class="btn btn-danger" title="delete" style="border: none; background-color:transparent;" onclick="return confirm('Apa anda yakin ingin menghapus data ini?')">
+                        <i class="fas fa-trash fa-lg text-danger"></i>
+                    </button>
+                </form>
 
             </form>
         </td>
