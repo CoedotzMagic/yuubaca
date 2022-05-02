@@ -1,9 +1,14 @@
 @extends('buku.layout')
 
 @section('content')
+@section('header')
+<h2 class="font-semibold text-xl leading-tight">
+    {{ __('Daftar Buku') }}
+</h2>
+@endsection
 
 <div class="row">
-    <div class="col-lg-12 margin-tb">
+    <div class="col-lg-12 margin-tb py-12">
 
         <!-- Search Data -->
 
@@ -23,16 +28,14 @@
         <!-- Button Tambah Data -->
 
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('buku.create') }}" title="Tambah Data Baru"> <i class="fas fa-plus-circle"></i>
+            <a class="btn text-white" style="background-color: #00A3FF" href="{{ route('buku.create') }}" title="Tambah Data Baru">
+                <i class="fas fa-plus-circle"></i>
                 Tambah Data Baru
             </a>
             <br><br>
         </div>
     </div>
 </div>
-
-<br>
-<br>
 
 @if ($message = Session::get('success'))
 <div class="alert alert-success">

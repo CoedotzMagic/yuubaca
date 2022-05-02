@@ -46,15 +46,16 @@
 
     <x-app-layout>
         <x-slot name="header">
-            @section('sidebar')
-
-            @show
-
-            <div class="container">
-                @yield('content')
-            </div>
-
+            @yield('header')
         </x-slot>
+
+        @section('sidebar')
+
+        @show
+
+        <div class="container">
+            @yield('content')
+        </div>
     </x-app-layout>
 
 </body>

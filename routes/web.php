@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BukuController;
 use App\Models\Buku;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,23 +20,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* Routes Admin */
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('/petunjuk-penggunaan', function () {
-    return view('petunjuk-penggunaan');
-})->middleware(['auth'])->name('petunjuk-penggunaan');
+    /* Routes Admin */
+    Route::get('/petunjuk-penggunaan', function () {
+        return view('petunjuk-penggunaan');
+    })->name('petunjuk-penggunaan');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/viewapi', function () {
-    return view('viewapi');
-})->middleware(['auth'])->name('viewapi');
+    Route::get('/viewapi', function () {
+        return view('viewapi');
+    })->name('viewapi');
 
-/* Route Restful, View Data Buku */
+    /* Route Restful, View Data Buku */
+    Route::resource('buku', BukuController::class);
 
-Route::resource('buku', BukuController::class);
+    Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+});
 
 // Route::get('dataBuku', function () {
 //     return view('buku.index');
