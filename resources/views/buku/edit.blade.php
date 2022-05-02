@@ -22,7 +22,7 @@
                     </ul>
                 </div>
                 @endif
-
+                
                 @php
                     $buku = \Illuminate\Support\Facades\DB::table('buku')->where('isbn', $isbn)->first();
                 @endphp

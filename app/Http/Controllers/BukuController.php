@@ -99,7 +99,7 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show($isbn)
+    public function show($isbn) 
     {
         return view('buku.show',compact('isbn'));
     }
