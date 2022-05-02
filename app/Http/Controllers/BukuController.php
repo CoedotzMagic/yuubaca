@@ -98,9 +98,9 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Buku $buku)
+    public function show($isbn) 
     {
-        return view('buku.show',compact('buku'));
+        return view('buku.show',compact('isbn'));
     } 
 
     /**
@@ -109,9 +109,9 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Buku $buku)
+    public function edit($buku)
     {
-        return view('buku.edit', compact('buku'));
+        return view('buku.edit', compact('isbn'));
     }
 
     /**

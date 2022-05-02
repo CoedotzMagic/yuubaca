@@ -22,6 +22,10 @@
                     </ul>
                 </div>
                 @endif
+                
+                @php
+                    $buku = \Illuminate\Support\Facades\DB::table('buku')->where('isbn', $isbn)->first();
+                @endphp
 
                 <form action="{{ route('buku.update',$buku->isbn) }}" method="POST" enctype="multipart/form-data">
                     @csrf
