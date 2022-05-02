@@ -109,7 +109,7 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($buku)
+    public function edit($isbn)
     {
         return view('buku.edit', compact('isbn'));
     }
