@@ -1,6 +1,11 @@
 @extends('buku.layout')
 
 @section('content')
+@section('header')
+<h2 class="font-semibold text-xl leading-tight">
+    {{ __('Edit Buku') }}
+</h2>
+@endsection
 
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

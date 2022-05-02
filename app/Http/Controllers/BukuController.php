@@ -181,5 +181,5 @@ class BukuController extends Controller
         return redirect()->route('buku.index')
             ->with('success', 'Data buku berhasil dihapus!');
     }
-
+    
 }
