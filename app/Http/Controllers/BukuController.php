@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
@@ -174,9 +174,11 @@ class BukuController extends Controller
      */
     public function destroy($isbn)
     {
-        $isbn = Buku::where('isbn', '=', $isbn);
+        $data = Buku::where('isbn', '=', $isbn)->first();
+        File::delete('img/' . $data->gambar);
+        File::delete('data/' . $data->file);
 
-        $isbn->delete();
+        Buku::where('isbn', '=', $isbn)->delete();
 
         return redirect()->route('buku.index')
             ->with('success', 'Data buku berhasil dihapus!');

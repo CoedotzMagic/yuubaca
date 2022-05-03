@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     /* Route Restful, View Data Buku */
     Route::resource('buku', BukuController::class);
+    
+    //Route::get('buku.destroy{isbn}', 'BukuController@destroy');
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
