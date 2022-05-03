@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\DB;
 class BukuController extends Controller
 {
 
+    // Mengaktifkan Session
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('logout');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +26,7 @@ class BukuController extends Controller
     {
 
         /**
-         * Melakukan Pengecekan Session pada Jenis Kucing
+         * Melakukan Pengecekan Session pada Dashboard
          */
 
         $data = $request->session()->has('auth');
