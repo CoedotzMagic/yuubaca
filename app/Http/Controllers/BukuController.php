@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
 {
@@ -33,7 +35,7 @@ class BukuController extends Controller
         $pagination  = 5;
         $buku    = Buku::when($request->keyword, function ($query) use ($request) {
             $query->where('judul', 'like', "%{$request->keyword}%")
-            ->orWhere('isbn', 'like', "%{$request->keyword}%");
+                ->orWhere('isbn', 'like', "%{$request->keyword}%");
         })->orderBy('created_at', 'desc')->paginate($pagination);
 
         $buku->appends($request->only('keyword'));
@@ -58,15 +60,16 @@ class BukuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $request->validate([
-            'isbn'=>'required',
-            'judul'=>'required',
-            'kategori'=>'required',
-            'tingkatan'=>'required',
+            'isbn' => 'required',
+            'judul' => 'required',
+            'kategori' => 'required',
+            'tingkatan' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file'=>'required|mimes:pdf,xlx,csv|max:2048',
+            'file' => 'required|mimes:pdf,xlx,csv|max:2048',
         ]);
 
         $input = $request->all();
@@ -77,7 +80,8 @@ class BukuController extends Controller
             $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['gambar'] = "$profileImage";
-        } if ($file = $request->file('file')) { // File
+        }
+        if ($file = $request->file('file')) { // File
             $destinationPath = 'data/';
             $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileData);
@@ -86,10 +90,10 @@ class BukuController extends Controller
 
         Buku::create($input);
 
-       return redirect()->route('buku.index')
-           ->with('success', 'Data Buku berhasil dibuat!.');
+        return redirect()->route('buku.index')
+            ->with('success', 'Data Buku berhasil dibuat!.');
 
-    //    return view('buku.index', ['buku'=> $input]);
+        //    return view('buku.index', ['buku'=> $input]);
     }
 
     /**
@@ -98,10 +102,10 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($isbn) 
+    public function show($isbn)
     {
-        return view('buku.show',compact('isbn'));
-    } 
+        return view('buku.show', compact('isbn'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -124,13 +128,14 @@ class BukuController extends Controller
     public function update(Request $request, $isbn)
     {
         $request->validate([
-            'isbn'=>'required',
-            'judul'=>'required',
-            'kategori'=>'required',
-            'tingkatan'=>'required',
+            'isbn' => 'required',
+            'judul' => 'required',
+            'kategori' => 'required',
+            'tingkatan' => 'required',
         ]);
 
-        $input = $request->all();
+        $input = request()->except(['_token', '_method']);
+        // $inputOld = $request->all();
 
         // Gambar
 
@@ -150,17 +155,12 @@ class BukuController extends Controller
             $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileData);
             $input['file'] = "$profileData";
+        } else {
+            unset($input['file']);
         }
 
         $buku = Buku::where('isbn', $isbn);
-        $buku->update([
-            'isbn' => $input['isbn'],
-            'judul' => $input['judul'],
-            'kategori' => $input['kategori'],
-            'tingkatan' => $input['tingkatan'],
-            'gambar' => $input['gambar'],
-            'file' => $input['file'],
-        ]);
+        $buku->update($input);
 
         return redirect()->route('buku.index')
             ->with('success', 'Data Buku berhasil diperbarui!');
@@ -174,11 +174,11 @@ class BukuController extends Controller
      */
     public function destroy($isbn)
     {
+        $isbn = Buku::where('isbn', '=', $isbn);
 
-        Buku::where('isbn', '=', $isbn)->delete();
+        $isbn->delete();
 
         return redirect()->route('buku.index')
             ->with('success', 'Data buku berhasil dihapus!');
     }
-    
 }
