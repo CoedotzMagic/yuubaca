@@ -28,9 +28,9 @@
 <div class="row">
 
     <!-- PDF -->
-    {{-- <object data="/data/{{ $book->file }}" type="application/pdf" width="100%" height="800px">
+    <object data="/data/{{ $buku->file }}" type="application/pdf" width="100%" height="800px">
         <p>Yah, karena browser ini tidak dilengkapi plugin, jadi alternatifnya anda bisa <a href="/data/{{ $buku->file }}">Klik untuk mengunduh Buku.</a></p>
-    </object> --}}
+    </object>
     <!-- PDF -->
 </div>
 @endsection

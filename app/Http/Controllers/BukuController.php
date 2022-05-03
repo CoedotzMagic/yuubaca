@@ -121,7 +121,7 @@ class BukuController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buku $buku)
+    public function update(Request $request, $isbn)
     {
         $request->validate([
             'isbn'=>'required',
@@ -152,7 +152,15 @@ class BukuController extends Controller
             $input['file'] = "$profileData";
         }
 
-        $buku->update($input);
+        $buku = Buku::where('isbn', $isbn);
+        $buku->update([
+            'isbn' => $input['isbn'],
+            'judul' => $input['judul'],
+            'kategori' => $input['kategori'],
+            'tingkatan' => $input['tingkatan'],
+            'gambar' => $input['gambar'],
+            'file' => $input['file'],
+        ]);
 
         return redirect()->route('buku.index')
             ->with('success', 'Data Buku berhasil diperbarui!');
