@@ -7,7 +7,7 @@
 </h2>
 @endsection
 
-{{-- <div class="row">
+<!-- {{-- <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2> Lihat Buku</h2>
@@ -16,14 +16,17 @@
             <a class="btn btn-primary" href="{{ route('buku.index') }}"> Kembali</a>
         </div>
     </div>
-</div> --}}
+</div> --}} -->
 
 
-    @php
-        $buku = \Illuminate\Support\Facades\DB::table('buku')->where('isbn', $isbn)->first();
-    @endphp
+@php
+$buku = \Illuminate\Support\Facades\DB::table('buku')->where('isbn', $isbn)->first();
+@endphp
+
+<br>
 
 <a class="btn btn-primary py-12" href="{{ route('buku.index') }}"> Kembali</a>
+<br><br>
 
 <div class="row">
 
