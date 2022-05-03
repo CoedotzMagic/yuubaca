@@ -140,6 +140,8 @@ class BukuController extends Controller
         // Gambar
 
         if ($image = $request->file('gambar')) {
+            $data = Buku::where('isbn', '=', $isbn)->first();
+            File::delete('img/' . $data->gambar);
             $destinationPath = 'img/';
             $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
@@ -151,6 +153,8 @@ class BukuController extends Controller
         // File
 
         if ($file = $request->file('file')) {
+            $data = Buku::where('isbn', '=', $isbn)->first();
+            File::delete('data/' . $data->file);
             $destinationPath = 'data/';
             $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileData);
