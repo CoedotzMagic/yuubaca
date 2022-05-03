@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-primary" type="submit">Ubah Data</button>
+                    <button class="btn btn-primary" type="submit" onclick="return confirm('Apa anda yakin ingin mengubah data ini?')">Ubah Data</button>
                     <a class="btn btn-secondary" href="{{ route('buku.index') }}"> Kembali</a>
                 </form>
             </div>
