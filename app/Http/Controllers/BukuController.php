@@ -81,24 +81,31 @@ class BukuController extends Controller
 
         $input = $request->all();
 
-        // Gambar
-        if ($image = $request->file('gambar')) {
-            $destinationPath = 'img/';
-            $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['gambar'] = "$profileImage";
-        }
-        if ($file = $request->file('file')) { // File
-            $destinationPath = 'data/';
-            $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
-            $file->move($destinationPath, $profileData);
-            $input['file'] = "$profileData";
-        }
+        // Pengecekan ISBN
 
-        Buku::create($input);
+        if (Buku::where('isbn', '=', $request->input('isbn'))->count() > 0) { // jika isbn ada
+            return back()->withErrors(['ISBN Sudah Ada!']);
+        } else { // jika isbn gak ada
+            // Gambar
+            if ($image = $request->file('gambar')) {
+                $destinationPath = 'img/';
+                $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $profileImage);
+                $input['gambar'] = "$profileImage";
+            }
+            // file
+            if ($file = $request->file('file')) {
+                $destinationPath = 'data/';
+                $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $profileData);
+                $input['file'] = "$profileData";
+            }
 
-        return redirect()->route('buku.index')
-            ->with('success', 'Data Buku berhasil dibuat!.');
+            Buku::create($input);
+
+            return redirect()->route('buku.index')
+                ->with('success', 'Data Buku berhasil dibuat!.');
+        }
 
         //    return view('buku.index', ['buku'=> $input]);
     }
@@ -135,7 +142,6 @@ class BukuController extends Controller
     public function update(Request $request, $isbn)
     {
         $request->validate([
-            'isbn' => 'required',
             'judul' => 'required',
             'kategori' => 'required',
             'tingkatan' => 'required',
@@ -144,37 +150,40 @@ class BukuController extends Controller
         $input = request()->except(['_token', '_method']);
         // $inputOld = $request->all();
 
-        // Gambar
+        // Pengecekan ISBN
 
-        if ($image = $request->file('gambar')) {
-            $data = Buku::where('isbn', '=', $isbn)->first();
-            File::delete('img/' . $data->gambar);
-            $destinationPath = 'img/';
-            $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['gambar'] = "$profileImage";
-        } else {
-            unset($input['gambar']);
+        if (Buku::where('isbn', '=', $request->input('isbn'))->count() > 1) { // jika isbn ada
+            return back()->withErrors(['ISBN Sudah Ada!']);
+        } else { // jika isbn gak ada
+            // Gambar
+            if ($image = $request->file('gambar')) {
+                $data = Buku::where('isbn', '=', $isbn)->first();
+                File::delete('img/' . $data->gambar);
+                $destinationPath = 'img/';
+                $profileImage = $image->getClientOriginalName() . "_" . date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $profileImage);
+                $input['gambar'] = "$profileImage";
+            } else {
+                unset($input['gambar']);
+            }
+            // File
+            if ($file = $request->file('file')) {
+                $data = Buku::where('isbn', '=', $isbn)->first();
+                File::delete('data/' . $data->file);
+                $destinationPath = 'data/';
+                $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $profileData);
+                $input['file'] = "$profileData";
+            } else {
+                unset($input['file']);
+            }
+
+            $buku = Buku::where('isbn', $isbn);
+            $buku->update($input);
+
+            return redirect()->route('buku.index')
+                ->with('success', 'Data Buku berhasil diperbarui!');
         }
-
-        // File
-
-        if ($file = $request->file('file')) {
-            $data = Buku::where('isbn', '=', $isbn)->first();
-            File::delete('data/' . $data->file);
-            $destinationPath = 'data/';
-            $profileData = $file->getClientOriginalName() . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
-            $file->move($destinationPath, $profileData);
-            $input['file'] = "$profileData";
-        } else {
-            unset($input['file']);
-        }
-
-        $buku = Buku::where('isbn', $isbn);
-        $buku->update($input);
-
-        return redirect()->route('buku.index')
-            ->with('success', 'Data Buku berhasil diperbarui!');
     }
 
     /**
