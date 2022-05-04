@@ -35,7 +35,7 @@
 
         <div class="px-4 my-5 text-center">
             {{-- <h1 class="display-5 fw-bold">YuuBaca API</h1> --}}
-            <div class=" mx-auto">
+            <div class="col-lg-6 mx-auto">
                 <p class="lead my-4">
                     Kamu dapat mengimplementasikan Data YuuBaca seperti Data Buku dll kedalam proyek maupun aplikasi kamu.
                 </p>
