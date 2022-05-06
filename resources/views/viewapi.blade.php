@@ -52,7 +52,7 @@
 
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-artikel.php" id="myInputBuku" readonly="readonly">
-                            <button class="btn btn-outline-success" type="button" onclick="myApiBuku()">Salin</button>
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiBuku()">Salin</button>
                         </div>
 
                         <script>
@@ -78,7 +78,7 @@
 
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-kategori.php" id="myInputKategori" readonly="readonly">
-                            <button class="btn btn-outline-success" type="button" onclick="myApiKategori()">Salin</button>
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiKategori()">Salin</button>
                         </div>
 
                         <script>
@@ -104,7 +104,7 @@
 
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-tingkatan.php" id="myInputTingkatan" readonly="readonly">
-                            <button class="btn btn-outline-success" type="button" onclick="myApiTingkatan()">Salin</button>
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiTingkatan()">Salin</button>
                         </div>
 
                         <script>
