@@ -51,7 +51,7 @@
                         <p class="text-start">API Buku</p>
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-artikel.php" id="myInputBuku" readonly="readonly">
+                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-buku.php" id="myInputBuku" readonly="readonly">
                             <button class="btn btn-outline-primary" type="button" onclick="myApiBuku()">Salin</button>
                         </div>
 
@@ -72,19 +72,19 @@
                             }
                         </script>
 
-                        <!-- api kategori -->
+                        <!-- api kategori IPA -->
 
-                        <p class="text-start">API Data Kategori</p>
+                        <p class="text-start">API Data Kategori IPA</p>
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-kategori.php" id="myInputKategori" readonly="readonly">
-                            <button class="btn btn-outline-primary" type="button" onclick="myApiKategori()">Salin</button>
+                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-ipa.php" id="myInputKategoriIPA" readonly="readonly">
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiIPA()">Salin</button>
                         </div>
 
                         <script>
-                            function myApiKategori() {
+                            function myApiIPA() {
                                 /* Get the text field */
-                                var copyText = document.getElementById("myInputKategori");
+                                var copyText = document.getElementById("myInputKategoriIPA");
 
                                 /* Select the text field */
                                 copyText.select();
@@ -94,23 +94,23 @@
                                 document.execCommand("copy");
 
                                 /* Alert the copied text */
-                                alert("API YuuBaca Data Kategori Berhasil disalin");
+                                alert("API YuuBaca Data Kategori IPA Berhasil disalin");
                             }
                         </script>
 
-                        <!-- api tingkatan -->
+                        <!-- api kategori IPS -->
 
-                        <p class="text-start">API Data Tingkatan</p>
+                        <p class="text-start">API Data Kategori IPS</p>
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-tingkatan.php" id="myInputTingkatan" readonly="readonly">
-                            <button class="btn btn-outline-primary" type="button" onclick="myApiTingkatan()">Salin</button>
+                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-ips.php" id="myInputKategoriIPS" readonly="readonly">
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiIPS()">Salin</button>
                         </div>
 
                         <script>
-                            function myApiTingkatan() {
+                            function myApiIPS() {
                                 /* Get the text field */
-                                var copyText = document.getElementById("myInputTingkatan");
+                                var copyText = document.getElementById("myInputKategoriIPS");
 
                                 /* Select the text field */
                                 copyText.select();
@@ -120,9 +120,89 @@
                                 document.execCommand("copy");
 
                                 /* Alert the copied text */
-                                alert("API YuuBaca Data Tingkatan Berhasil disalin");
+                                alert("API YuuBaca Data Kategori IPS Berhasil disalin");
                             }
                         </script>
+
+                        <!-- api tingkatan SD -->
+
+                        <p class="text-start">API Data Tingkatan SD</p>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-sd.php" id="myInputTingkatanSD" readonly="readonly">
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiSD()">Salin</button>
+                        </div>
+
+                        <script>
+                            function myApiSD() {
+                                /* Get the text field */
+                                var copyText = document.getElementById("myInputTingkatanSD");
+
+                                /* Select the text field */
+                                copyText.select();
+                                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                                /* Copy the text inside the text field */
+                                document.execCommand("copy");
+
+                                /* Alert the copied text */
+                                alert("API YuuBaca Data Tingkatan SD Berhasil disalin");
+                            }
+                        </script>
+
+                        <!-- api tingkatan SD -->
+
+                        <p class="text-start">API Data Tingkatan SMP</p>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-smp.php" id="myInputTingkatanSMP" readonly="readonly">
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiSMP()">Salin</button>
+                        </div>
+
+                        <script>
+                            function myApiSMP() {
+                                /* Get the text field */
+                                var copyText = document.getElementById("myInputTingkatanSMP");
+
+                                /* Select the text field */
+                                copyText.select();
+                                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                                /* Copy the text inside the text field */
+                                document.execCommand("copy");
+
+                                /* Alert the copied text */
+                                alert("API YuuBaca Data Tingkatan SMP Berhasil disalin");
+                            }
+                        </script>
+
+                        <!-- api tingkatan SMA -->
+
+                        <p class="text-start">API Data Tingkatan SMA</p>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" value="http://localhost/yuubaca/app/Api/data-api-sma.php" id="myInputTingkatanSMA" readonly="readonly">
+                            <button class="btn btn-outline-primary" type="button" onclick="myApiSMA()">Salin</button>
+                        </div>
+
+                        <script>
+                            function myApiSMA() {
+                                /* Get the text field */
+                                var copyText = document.getElementById("myInputTingkatanSMA");
+
+                                /* Select the text field */
+                                copyText.select();
+                                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                                /* Copy the text inside the text field */
+                                document.execCommand("copy");
+
+                                /* Alert the copied text */
+                                alert("API YuuBaca Data Tingkatan SMA Berhasil disalin");
+                            }
+                        </script>
+
+                        <!-- END API -->
                     </div>
                 </div>
             </div>
