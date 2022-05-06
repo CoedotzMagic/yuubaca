@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-green-400 leading-tight">
-            Selamat datang, {{ Auth()->user()->name}}
+            Selamat datang, {{ Auth()->user()->name }}
         </h2>
     </x-slot>
 
@@ -21,7 +21,7 @@
                             @php
                                 $buku = \Illuminate\Support\Facades\DB::table('buku')->count();
                             @endphp
-                            <p class="pull-right text-bold" style="font-size: 50px; font-family: Arial">{{ $buku }}</p>
+                            <p align="right" style="font-size: 50px; font-family: Arial">{{ $buku }}</p>
                     </div>
                 </x-card>
             </div>
@@ -40,7 +40,7 @@
                             @php
                                 $user = \Illuminate\Support\Facades\DB::table('users')->count();
                             @endphp
-                            <p class="pull-right text-bold" style="font-size: 50px; font-family: Arial">{{ $user }}</p>
+                            <p align="right" style="font-size: 50px; font-family: Arial">{{ $user }}</p>
                     </div>
                 </x-card2>
             </div>
