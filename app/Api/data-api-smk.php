@@ -10,7 +10,7 @@ if ($mysqli->connect_errno) {
     exit();
 }
   
-$query="SELECT * FROM buku"; 
+$query="SELECT * FROM buku WHERE tingkatan = 'SMK'"; 
 $result=$mysqli->query($query)
 	or die ($mysqli->error);
 	
@@ -36,8 +36,8 @@ $posts[] = array(
 
 $response = $posts;
 
-$fp = fopen('data-api-buku.json', 'w');
+$fp = fopen('data-api-smk.json', 'w');
 fwrite($fp, json_encode($response, JSON_PRETTY_PRINT));
 fclose($fp);
-header( 'Location: http://localhost/yuubaca/app/Api/data-api-buku.json' ) ;
+header( 'Location: http://localhost/yuubaca/app/Api/data-api-smk.json' ) ;
 ?> 
