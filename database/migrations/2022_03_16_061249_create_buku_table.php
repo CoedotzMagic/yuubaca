@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('tingkatan');
             $table->text('gambar');
             $table->text('file');
+            $table->string('user');
             $table->timestamps();
         });
     }

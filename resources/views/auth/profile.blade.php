@@ -45,11 +45,15 @@
                                      name="password_confirmation"/>
                         </div>
 
+                        <br>
                         <x-button class="mt-4">
                             {{ __('Submit') }}
                         </x-button>
-                    </form>
 
+                        <x-back-button>
+                            {{ __('Kembali') }}
+                        </x-back-button>
+                    </form>
                 </div>
             </div>
         </div>

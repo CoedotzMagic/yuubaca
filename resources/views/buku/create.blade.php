@@ -63,6 +63,7 @@
                             <input type="file" class="form-control" id="file" name="file" required>
                         </div>
                     </div>
+                    <input type="hidden" id="user" name="user" value="{{ Auth()->user()->name }}">
                     <br>
                     <button class="btn btn-primary" type="submit">Tambah Data</button>
                     <a class="btn btn-secondary" href="{{ route('buku.index') }}"> Kembali</a>
