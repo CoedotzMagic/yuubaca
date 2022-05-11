@@ -19,6 +19,6 @@ class Buku extends Model
         'tingkatan',
         'gambar',
         'file',
-        'user',
+        'pustakawan',
     ];
 }
