@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('author');
             $table->text('gambar');
             $table->text('file');
-            $table->string('user');
+            $table->string('pustakawan');
             $table->timestamps();
         });
     }

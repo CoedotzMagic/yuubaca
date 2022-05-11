@@ -75,8 +75,10 @@ class BukuController extends Controller
             'judul' => 'required',
             'kategori' => 'required',
             'tingkatan' => 'required',
+            'author' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+            'pustakawan' => 'required',
         ]);
 
         $input = $request->all();

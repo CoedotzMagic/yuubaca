@@ -50,6 +50,7 @@
         <th>Judul</th>
         <th>Kategori</th>
         <th>Tingkatan</th>
+        <th>Author</th>
         <th width="280px">Aksi</th>
     </tr>
     @php
@@ -62,6 +63,7 @@
         <td>{{ $dataBuku->judul }}</td>
         <td>{{ $dataBuku->kategori }}</td>
         <td>{{ $dataBuku->tingkatan }}</td>
+        <td>{{ $dataBuku->author }}</td>
         <td>
             <div>
             <a class="btn btn-info" href="{{ route('buku.show',$dataBuku->isbn) }}" title="Show" style="border: none; background-color:transparent;"> <i class="fas fa-eye  fa-lg" style="color:black"></i>

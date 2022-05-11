@@ -27,20 +27,26 @@
                     @csrf
 
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="isbn">ISBN</label>
                             <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="judul">Judul</label>
                             <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
                             <label for="Kategori">Kategori</label>
                             <select class="custom-select" id="Kategori" name="kategori">
                                 <option value="IPA">IPA</option>
                                 <option value="IPS">IPS</option>
                             </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="author">Author</label>
+                            <input type="text" class="form-control" id="author" name="author" placeholder="Author" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -63,7 +69,7 @@
                             <input type="file" class="form-control" id="file" name="file" required>
                         </div>
                     </div>
-                    <input type="hidden" id="user" name="user" value="{{ Auth()->user()->name }}">
+                    <input type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">
                     <br>
                     <button class="btn btn-primary" type="submit">Tambah Data</button>
                     <a class="btn btn-secondary" href="{{ route('buku.index') }}"> Kembali</a>

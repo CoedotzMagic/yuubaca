@@ -22,7 +22,7 @@
                     </ul>
                 </div>
                 @endif
-                
+
                 @php
                     $buku = \Illuminate\Support\Facades\DB::table('buku')->where('isbn', $isbn)->first();
                 @endphp
@@ -32,20 +32,26 @@
                     @method('PUT')
 
                     <div class="form-row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="isbn">ISBN</label>
                             <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN" value="{{ $buku->isbn }}" disabled>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="judul">Judul</label>
                             <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" value="{{ $buku->judul }}" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
                             <label for="Kategori">Kategori</label>
                             <select class="custom-select" id="Kategori" name="kategori">
                                 <option value="IPA">IPA</option>
                                 <option value="IPS">IPS</option>
                             </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="author">Author</label>
+                            <input type="text" class="form-control" id="author" name="author" placeholder="Author" value="{{ $buku->author }}" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -59,17 +65,18 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="gambar">Gambar</label>
-                            <input type="file" class="form-control" id="gambar" name="gambar">
+                            <input type="file" class="form-control" id="gambar" name="gambar" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <label for="file">File</label>
-                            <input type="file" class="form-control" id="file" name="file">
+                            <input type="file" class="form-control" id="file" name="file" required>
                         </div>
                     </div>
+                    <input type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">
                     <br>
-                    <button class="btn btn-primary" type="submit" onclick="return confirm('Apa anda yakin ingin mengubah data ini?')">Ubah Data</button>
+                    <button class="btn btn-primary" type="submit">Tambah Data</button>
                     <a class="btn btn-secondary" href="{{ route('buku.index') }}"> Kembali</a>
                 </form>
             </div>
