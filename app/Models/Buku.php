@@ -17,6 +17,7 @@ class Buku extends Model
         'judul',
         'kategori',
         'tingkatan',
+        'author',
         'gambar',
         'file',
         'pustakawan',

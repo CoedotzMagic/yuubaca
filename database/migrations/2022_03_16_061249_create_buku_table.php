@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('kategori');
             $table->string('tingkatan');
+            $table->string('author');
             $table->text('gambar');
             $table->text('file');
             $table->string('user');
