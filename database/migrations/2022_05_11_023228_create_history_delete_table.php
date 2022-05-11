@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('history_delete', function (Blueprint $table) {
             $table->id()->primary();
+            $table->string('isbn');
             $table->foreign('isbn')->references('isbn')->on('buku');
             $table->string('judul');
             $table->string('pustakawan');
