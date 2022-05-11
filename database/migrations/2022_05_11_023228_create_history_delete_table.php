@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('history_delete', function (Blueprint $table) {
             $table->id();
             $table->string('isbn');
-            $table->foreign('isbn')->references('isbn')->on('buku');
             $table->string('judul');
             $table->string('pustakawan');
             $table->timestamps();
+
+            // foreign key
+            $table->foreign('isbn')->references('isbn')->on('buku');
         });
     }
 
