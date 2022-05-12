@@ -18,18 +18,18 @@
                         @csrf
                         @method('PUT')
 
-                        <div>
+                        <!-- <div>
                             <x-label for="name" :value="__('Name')"/>
 
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                     :value="old('name', auth()->user()->name)" required/>
-                        </div>
+                            <x-input oncontextmenu="return false;" id="name" class="block mt-1 w-full" type="text" name="name"
+                                     :value="old('name', auth()->user()->name)" readonly/>
+                        </div> -->
 
                         <div class="mt-4">
                             <x-label for="email" :value="__('Email')"/>
 
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                     :value="old('email', auth()->user()->email)" required/>
+                            <x-input oncontextmenu="return false;" id="email" class="block mt-1 w-full" type="email" name="email"
+                                     :value="old('email', auth()->user()->email)" readonly/>
                         </div>
 
                         <div class="mt-4">
@@ -44,6 +44,9 @@
                             <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
                                      name="password_confirmation"/>
                         </div>
+
+                        <br>
+                        <x-label for="change_status" :value="__('* Untuk Perubahan Nama & Email, silahkan hubungi master admin di email admin@yuubaca.com dengan subjek email : Perubahan Data')"/>
 
                         <br>
                         <x-button class="mt-4">
