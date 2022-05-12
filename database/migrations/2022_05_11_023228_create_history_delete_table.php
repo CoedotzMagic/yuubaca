@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('isbn');
             $table->string('judul');
             $table->string('pustakawan');
-            $table->timestamps();
 
 //            // foreign key
 //            $table->foreign('isbn')->references('isbn')->on('buku');
