@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\ListDataController;
 use App\Models\Buku;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     /* Route Restful, View Data Buku */
     Route::resource('buku', BukuController::class);
+    Route::resource('listdata', ListDataController::class);
     
     //Route::get('buku.destroy{isbn}', 'BukuController@destroy');
 
