@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-green-400 leading-tight">
+        <h2 class="font-semibold text-xl leading-tight">
             Selamat datang, {{ Auth()->user()->name }}
         </h2>
     </x-slot>
@@ -52,7 +52,7 @@
     <div style="background-color: #9edcff">
         {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                
+
             </div>
         </div> --}}
 

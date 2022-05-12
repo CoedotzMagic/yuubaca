@@ -69,6 +69,12 @@
                             <input type="file" class="form-control" id="file" name="file" required>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea id="deskripsi" name="deskripsi" rows="4" cols="150"></textarea>
+                        </div>
+                    </div>
                     <input type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">
                     <br>
                     <button class="btn btn-primary" type="submit">Tambah Data</button>
