@@ -148,6 +148,9 @@ class BukuController extends Controller
             'judul' => 'required',
             'kategori' => 'required',
             'tingkatan' => 'required',
+            'pustakawan' => 'required',
+            'author' => 'required',
+            'deskripsi' => 'required',
         ]);
 
         $input = request()->except(['_token', '_method']);
