@@ -65,13 +65,19 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="gambar">Gambar</label>
-                            <input type="file" class="form-control" id="gambar" name="gambar" required>
+                            <input type="file" class="form-control" id="gambar" name="gambar">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <label for="file">File</label>
-                            <input type="file" class="form-control" id="file" name="file" required>
+                            <input type="file" class="form-control" id="file" name="file">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4">{{ $buku->deskripsi }}</textarea>
                         </div>
                     </div>
                     <input type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">

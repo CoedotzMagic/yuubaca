@@ -76,6 +76,7 @@ class BukuController extends Controller
             'kategori' => 'required',
             'tingkatan' => 'required',
             'author' => 'required',
+            'deskripsi' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'file' => 'required|mimes:pdf,xlx,csv|max:2048',
             'pustakawan' => 'required',
@@ -104,9 +105,9 @@ class BukuController extends Controller
             }
 
             Buku::create($input);
+            toast('Data buku berhasil ditambah!', 'success');
 
-            return redirect()->route('buku.index')
-                ->with('success', 'Data Buku berhasil dibuat!.');
+            return redirect()->route('buku.index');
         }
 
         //    return view('buku.index', ['buku'=> $input]);
@@ -182,9 +183,9 @@ class BukuController extends Controller
 
             $buku = Buku::where('isbn', $isbn);
             $buku->update($input);
+            toast('Data buku berhasil diupdate!', 'success');
 
-            return redirect()->route('buku.index')
-                ->with('success', 'Data Buku berhasil diperbarui!');
+            return redirect()->route('buku.index');
         }
     }
 
@@ -201,8 +202,8 @@ class BukuController extends Controller
         File::delete('data/' . $data->file);
 
         Buku::where('isbn', '=', $isbn)->delete();
+        toast('Data buku berhasil dihapus!', 'success');
 
-        return redirect()->route('buku.index')
-            ->with('success', 'Data buku berhasil dihapus!');
+        return redirect()->route('buku.index');
     }
 }

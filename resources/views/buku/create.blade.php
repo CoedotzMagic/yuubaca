@@ -72,7 +72,7 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <label for="deskripsi">Deskripsi</label>
-                            <textarea id="deskripsi" name="deskripsi" rows="4" cols="150"></textarea>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4"></textarea>
                         </div>
                     </div>
                     <input type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">
