@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
                         {{ __('Buku') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('listdata.index')" :active="request()->routeIs('listdata.index')">
+                        {{ __('Data Buku Keseluruhan') }}
+                    </x-nav-link>
                     <!-- Lihat API -->
                     <x-nav-link :href="route('viewapi')" :active="request()->routeIs('viewapi')">
                         {{ __('API') }}
@@ -84,6 +87,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
                 {{ __('Buku') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('listdata.index')" :active="request()->routeIs('listdata.index')">
+                {{ __('Data Buku Keseluruhan') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('viewapi')" :active="request()->routeIs('viewapi')">
                 {{ __('API') }}
