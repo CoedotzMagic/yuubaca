@@ -76,7 +76,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
-                            <label for="deskripsi">Deskripsi</label>
+                            <label for="deskripsi">Deskripsi / Sipnosis</label>
                             <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4">{{ $buku->deskripsi }}</textarea>
                         </div>
                     </div>
