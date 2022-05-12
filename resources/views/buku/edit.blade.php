@@ -82,7 +82,7 @@
                     </div>
                     <input type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">
                     <br>
-                    <button class="btn btn-primary" type="submit">Tambah Data</button>
+                    <button class="btn btn-primary" type="submit">Edit Data</button>
                     <a class="btn btn-secondary" href="{{ route('buku.index') }}"> Kembali</a>
                 </form>
             </div>
