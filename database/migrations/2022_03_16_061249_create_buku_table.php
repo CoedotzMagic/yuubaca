@@ -22,8 +22,12 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->text('gambar');
             $table->text('file');
-            $table->string('pustakawan');
+            $table->unsignedBigInteger('pustakawan_id');
+//            $table->string('pustakawan');
             $table->timestamps();
+
+            // foreign key
+            $table->foreign('pustakawan_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

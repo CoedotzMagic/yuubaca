@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('isbn');
             $table->string('judul');
-            $table->string('pustakawan');
+            $table->unsignedBigInteger('pustakawan_id');
 
 //            // foreign key
-//            $table->foreign('isbn')->references('isbn')->on('buku');
+            $table->foreign('pustakawan_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

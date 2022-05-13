@@ -21,6 +21,6 @@ class Buku extends Model
         'deskripsi',
         'gambar',
         'file',
-        'pustakawan',
+        'pustakawan_id',
     ];
 }

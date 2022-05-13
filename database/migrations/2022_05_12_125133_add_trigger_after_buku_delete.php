@@ -21,7 +21,7 @@ return new class extends Migration
                 id = null,
                 isbn = old.isbn,
                 judul = old.judul,
-                pustakawan = old.pustakawan');
+                pustakawan_id = old.pustakawan_id');
     }
 
     /**

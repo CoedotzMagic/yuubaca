@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 
@@ -40,9 +41,11 @@ class BukuController extends Controller
         //     ->with('i', (request()->input('page', 1) - 1) * 5);
 
         $pagination  = 5;
-        $buku    = Buku::when($request->keyword, function ($query) use ($request) {
+        $pustakawan_id = Auth::user()->id;
+
+        $buku = Buku::where('pustakawan_id', $pustakawan_id)->when($request->keyword, function ($query) use ($request) {
             $query->where('judul', 'like', "%{$request->keyword}%")
-                ->orWhere('isbn', 'like', "%{$request->keyword}%");
+                  ->where('isbn', 'like', "%{$request->keyword}%");
         })->orderBy('created_at', 'desc')->paginate($pagination);
 
         $buku->appends($request->only('keyword'));
@@ -79,7 +82,7 @@ class BukuController extends Controller
             'deskripsi' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'file' => 'required|mimes:pdf,xlx,csv|max:2048',
-            'pustakawan' => 'required',
+            'pustakawan_id' => 'required|integer',
         ]);
 
         $input = $request->all();
@@ -106,7 +109,7 @@ class BukuController extends Controller
 
             Buku::create($input);
             toast('Data buku berhasil ditambah!', 'success');
-
+//            dd($input);
             return redirect()->route('buku.index');
         }
 
@@ -148,7 +151,7 @@ class BukuController extends Controller
             'judul' => 'required',
             'kategori' => 'required',
             'tingkatan' => 'required',
-            'pustakawan' => 'required',
+            'pustakawan_id' => 'required',
             'author' => 'required',
             'deskripsi' => 'required',
         ]);

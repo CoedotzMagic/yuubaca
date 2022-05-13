@@ -54,9 +54,7 @@
         <th>Deskripsi</th>
         <th width="280px">Aksi</th>
     </tr>
-    @php
-        $i = 1;
-    @endphp
+
     @foreach ($buku as $dataBuku)
     <tr>
         <td>{{ $dataBuku->isbn }}</td>

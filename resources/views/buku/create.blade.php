@@ -75,7 +75,7 @@
                             <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">
+                    <input type="hidden" id="pustakawan_id" name="pustakawan_id" value="{{ Auth()->user()->id }}">
                     <br>
                     <button class="btn btn-primary" type="submit">Tambah Data</button>
                     <a class="btn btn-secondary" href="{{ route('buku.index') }}"> Kembali</a>
