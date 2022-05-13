@@ -80,7 +80,7 @@
                             <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4">{{ $buku->deskripsi }}</textarea>
                         </div>
                     </div>
-                    <input oncontextmenu="return false;" type="hidden" id="pustakawan" name="pustakawan" value="{{ Auth()->user()->name }}">
+                    <input oncontextmenu="return false;" type="hidden" id="pustakawan_id" name="pustakawan_id" value="{{ Auth()->user()->id }}">
                     <br>
                     <button class="btn btn-primary" type="submit" onclick="return confirm('Apa anda yakin ingin mengubah data ini?')">Edit Data</button>
                     <a class="btn btn-secondary" href="{{ route('buku.index') }}"> Kembali</a>
